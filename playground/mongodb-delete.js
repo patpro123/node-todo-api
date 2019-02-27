@@ -7,11 +7,13 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,client)=>{
     console.log('Connected to MongoDB server');
 
     var db = client.db('UserDb');
-    db.collection('Users').find().toArray().then((docs) => {
-        console.log("To dos");
+    db.collection('Users').deleteOne({
+        age: 25
+    }).then((docs) => {
+        console.log("Users");
         console.log(JSON.stringify(docs,undefined,2));
     },(err) => {
-        console.log("Failure to find any document",err);
+        console.log("Failure to delete any document",err);
     });
 
 
